@@ -17,6 +17,26 @@ Semantic Conventions into a single standard maintained by OpenTelemetry.
 
 Special guidance is provided during the donation period. Please review the [contribution guide](CONTRIBUTING.md).
 
+## Opensearch Modifications
+
+This repositroy conatins some modifications as opposed to the original repo. 
+This includes sections in the generator scripts which generate OpenSearch compatible
+index templates. Due to some differences in the APIs and available field types
+within OpenSearch, I adopted the build process to handle the differences and do 
+some conversions. This makes it possible to get some future schema updates from the
+repo easily.
+
+Changes in field types:
+
+| ECS => Elasticsearch | Opensearch |
+|----------------------|------------|
+| constant_keyword     | keyword    |
+| wildcard             | keyword    |
+| flattened            | object     |
+| version              | keyword    |
+
+These changes will lead to some differences in performance and search options. 
+
 ## Documentation
 
 The ECS reference is published on the main Elastic documentation website.
