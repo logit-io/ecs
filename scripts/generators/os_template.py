@@ -7,9 +7,10 @@ from os.path import join
 
 from _types import (
     Field,
+    FieldNestedEntry,
 )
 from generators import ecs_helpers
-from generators.es_template import dict_add_nested, entry_for, mapping_settings, save_json, template_settings
+from generators.es_template import dict_add_nested, entry_for, mapping_settings, save_json, template_settings, component_name_convention, save_component_template, save_composable_template
 
 
 OPENSEARCH_REMAP = {
@@ -20,8 +21,44 @@ OPENSEARCH_REMAP = {
     'match_only_text': 'text',
 }
 
+# Composable Template
+
 
 def generate(
+    ecs_nested: Dict[str, FieldNestedEntry],
+    ecs_version: str,
+    out_dir: str,
+    mapping_settings_file: str,
+    template_settings_file: str
+) -> None:
+    """This generates all artifacts for the composable template approach"""
+    all_component_templates(ecs_nested, ecs_version, out_dir)
+    component_names = component_name_convention(ecs_version, ecs_nested)
+    save_composable_template(ecs_version, component_names, out_dir, mapping_settings_file, template_settings_file)
+
+
+def all_component_templates(
+    ecs_nested: Dict[str, FieldNestedEntry],
+    ecs_version: str,
+    out_dir: str
+) -> None:
+    """Generate one component template per field set"""
+    component_dir: str = join(out_dir, 'opensearch/composable/component')
+    ecs_helpers.make_dirs(component_dir)
+
+    for (fieldset_name, fieldset) in ecs_helpers.remove_top_level_reusable_false(ecs_nested).items():
+        field_mappings = {}
+        for (flat_name, field) in fieldset['fields'].items():
+            name_parts = flat_name.split('.')
+            opensearch_remap_field_type(field)  # Apply the remap function here
+            dict_add_nested(field_mappings, name_parts, entry_for(field))
+
+        save_component_template(fieldset_name, field['level'], ecs_version, component_dir, field_mappings)
+
+# Legacy template
+
+
+def generate_legacy(
     ecs_flat: Dict[str, Field],
     ecs_version: str,
     out_dir: str,
