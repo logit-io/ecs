@@ -111,3 +111,5 @@ def opensearch_remap_field_type(
         for multi_field in field['multi_fields']:
             typ = multi_field['type']
             multi_field['type'] = OPENSEARCH_REMAP[typ]
+    if 'synthetic_source_keep' in field:
+        del field['synthetic_source_keep']

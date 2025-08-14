@@ -72,7 +72,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }
@@ -81,7 +80,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }
@@ -101,7 +99,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }
@@ -120,7 +117,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }
@@ -129,7 +125,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }
@@ -147,7 +142,6 @@
               "properties": {
                 "address": {
                   "ignore_above": 1024,
-                  "synthetic_source_keep": "none",
                   "type": "keyword"
                 }
               }

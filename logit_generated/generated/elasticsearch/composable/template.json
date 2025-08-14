@@ -4,8 +4,8 @@
     "ecs_version": "9.0.0"
   },
   "composed_of": [
-    "ecs_9.0.0_agent",
     "ecs_9.0.0_base",
+    "ecs_9.0.0_agent",
     "ecs_9.0.0_client",
     "ecs_9.0.0_cloud",
     "ecs_9.0.0_container",
@@ -40,8 +40,8 @@
     "ecs_9.0.0_tls",
     "ecs_9.0.0_tracing",
     "ecs_9.0.0_url",
-    "ecs_9.0.0_user",
     "ecs_9.0.0_user_agent",
+    "ecs_9.0.0_user",
     "ecs_9.0.0_volume",
     "ecs_9.0.0_vulnerability"
   ],
